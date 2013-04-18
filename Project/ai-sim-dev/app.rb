@@ -1,114 +1,91 @@
-require "sinatra"
-require 'koala'
+require 'sinatra'
+require "sinatra/cookies"
+require 'omniauth-facebook'
+require 'fb_graph'
+require './helpers/get_post'
 
 enable :sessions
-set :raise_errors, false
-set :show_exceptions, false
 
-# Scope defines what permissions that we are asking the user to grant.
-# In this example, we are asking for the ability to publish stories
-# about using the app, access to what the user likes, and to be able
-# to use their pictures.  You should rewrite this scope with whatever
-# permissions your app needs.
-# See https://developers.facebook.com/docs/reference/api/permissions/
-# for a full list of permissions
-FACEBOOK_SCOPE = 'user_likes,user_photos'
+set :protection, :except => :frame_options
 
-unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
-  abort("missing env vars: please set FACEBOOK_APP_ID and FACEBOOK_SECRET with your app credentials")
+configure do
+  set :redirect_uri, nil
 end
 
-before do
-  # HTTPS redirect
-  if settings.environment == :production && request.scheme != 'https'
-    redirect "https://#{request.env['HTTP_HOST']}"
-  end
+OmniAuth.config.on_failure = lambda do |env|
+  [302, {'Location' => '/auth/failure', 'Content-Type' => 'text/html'}, []]
 end
 
-helpers do
-  def host
-    request.env['HTTP_HOST']
-  end
+APP_ID = "114094395457111"
+APP_SECRET = "d24b54c487bdc97b56c031a39952bf7b"
 
-  def scheme
-    request.scheme
-  end
-
-  def url_no_scheme(path = '')
-    "//#{host}#{path}"
-  end
-
-  def url(path = '')
-    "#{scheme}://#{host}#{path}"
-  end
-
-  def authenticator
-    @authenticator ||= Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"], url("/auth/facebook/callback"))
-  end
-
-  # allow for javascript authentication
-  def access_token_from_cookie
-    authenticator.get_user_info_from_cookies(request.cookies)['access_token']
-  rescue => err
-    warn err.message
-  end
-
-  def access_token
-    session[:access_token] || access_token_from_cookie
-  end
-
+use OmniAuth::Builder do
+  provider :facebook, APP_ID, APP_SECRET, { :scope => 'email, status_update, publish_stream' }
 end
 
-# the facebook session expired! reset ours and restart the process
-error(Koala::Facebook::APIError) do
-  session[:access_token] = nil
-  redirect "/auth/facebook"
-end
+get_post '/' do
+  @articles = []
+  @articles << {:title => 'Getting Started with Heroku', :url => 'https://devcenter.heroku.com/articles/quickstart'}
+  @articles << {:title => 'Deploying Rack-based apps in Heroku', :url => 'http://docs.heroku.com/rack'}
+  @articles << {:title => 'Learn Ruby in twenty minutes', :url => 'http://www.ruby-lang.org/en/documentation/quickstart/'}
 
-get "/" do
-  # Get base API Connection
-  @graph  = Koala::Facebook::API.new(access_token)
-
-  # Get public details of current application
-  @app  =  @graph.get_object(ENV["FACEBOOK_APP_ID"])
-
-  if access_token
-    @user    = @graph.get_object("me")
-    @friends = @graph.get_connections('me', 'friends')
-    @photos  = @graph.get_connections('me', 'photos')
-    @likes   = @graph.get_connections('me', 'likes').first(4)
-
-    # for other data you can always run fql
-    @friends_using_app = @graph.fql_query("SELECT uid, name, is_app_user, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1")
-  end
   erb :index
 end
 
-# used by Canvas apps - redirect the POST to be a regular GET
-post "/" do
-  redirect "/"
-end
-
-# used to close the browser window opened to post to wall/send to friends
-get "/close" do
-  "<body onload='window.close();'/>"
-end
-
-# Doesn't actually sign out permanently, but good for testing
-get "/preview/logged_out" do
-  session[:access_token] = nil
-  request.cookies.keys.each { |key, value| response.set_cookie(key, '') }
-  redirect '/'
-end
-
-
-# Allows for direct oauth authentication
-get "/auth/facebook" do
-  session[:access_token] = nil
-  redirect authenticator.url_for_oauth_code(:permissions => FACEBOOK_SCOPE)
-end
-
 get '/auth/facebook/callback' do
-  session[:access_token] = authenticator.get_access_token(params[:code])
+  fb_auth = request.env['omniauth.auth']
+  session['fb_auth'] = fb_auth
+  session['fb_token'] = cookies[:fb_token] = fb_auth['credentials']['token']
+  session['fb_error'] = nil
   redirect '/'
 end
+
+get '/auth/failure' do
+  clear_session
+  session['fb_error'] = 'In order to use all the Facebook features in this site you must allow us access to your Facebook data...<br />'
+  redirect '/'
+end
+
+get '/login' do
+  if settings.redirect_uri
+    # we're in FB
+    erb :dialog_oauth
+  else
+    # we aren't in FB (standalone app)
+    redirect '/auth/facebook'
+  end
+end
+
+get '/logout' do
+  clear_session
+  redirect '/'
+end
+
+post '/canvas/' do
+
+  redirect '/auth/failure' if request.params['error'] == 'access_denied'
+
+  settings.redirect_uri = 'https://apps.facebook.com/faceboku/'
+
+  url = request.params['code'] ? "/auth/facebook?signed_request=#{request.params['signed_request']}&state=canvas" : '/login'
+  redirect url
+end
+
+def clear_session
+  session['fb_auth'] = nil
+  session['fb_token'] = nil
+  session['fb_error'] = nil
+  cookies[:fb_token] = nil
+end
+
+__END__
+
+@@ dialog_oauth
+<script>
+  var oauth_url = 'https://www.facebook.com/dialog/oauth/';
+  oauth_url += '?client_id=153304591365687';
+  oauth_url += '&redirect_uri=' + encodeURIComponent('<%=settings.redirect_uri%>');
+  oauth_url += '&scope=email, status_update, publish_stream'
+
+  window.top.location = oauth_url;
+</script>
