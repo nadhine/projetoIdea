@@ -1,12 +1,15 @@
 require 'sinatra'
 require "sinatra/cookies"
 require 'omniauth-facebook'
-require 'fb_graph'
 require './helpers/get_post'
 
 enable :sessions
 
 set :protection, :except => :frame_options
+
+unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
+  abort("missing env vars: please set FACEBOOK_APP_ID and FACEBOOK_SECRET with your app credentials")
+end
 
 configure do
   set :redirect_uri, nil
@@ -16,11 +19,8 @@ OmniAuth.config.on_failure = lambda do |env|
   [302, {'Location' => '/auth/failure', 'Content-Type' => 'text/html'}, []]
 end
 
-APP_ID = "114094395457111"
-APP_SECRET = "d24b54c487bdc97b56c031a39952bf7b"
-
 use OmniAuth::Builder do
-  provider :facebook, APP_ID, APP_SECRET, { :scope => 'email, status_update, publish_stream' }
+  provider :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"], { :scope => 'email, status_update, publish_stream' }
 end
 
 get_post '/' do
@@ -61,31 +61,9 @@ get '/logout' do
   redirect '/'
 end
 
-post '/canvas/' do
-
-  redirect '/auth/failure' if request.params['error'] == 'access_denied'
-
-  settings.redirect_uri = 'https://apps.facebook.com/faceboku/'
-
-  url = request.params['code'] ? "/auth/facebook?signed_request=#{request.params['signed_request']}&state=canvas" : '/login'
-  redirect url
-end
-
 def clear_session
   session['fb_auth'] = nil
   session['fb_token'] = nil
   session['fb_error'] = nil
   cookies[:fb_token] = nil
 end
-
-__END__
-
-@@ dialog_oauth
-<script>
-  var oauth_url = 'https://www.facebook.com/dialog/oauth/';
-  oauth_url += '?client_id=153304591365687';
-  oauth_url += '&redirect_uri=' + encodeURIComponent('<%=settings.redirect_uri%>');
-  oauth_url += '&scope=email, status_update, publish_stream'
-
-  window.top.location = oauth_url;
-</script>
