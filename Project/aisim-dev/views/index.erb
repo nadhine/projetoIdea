@@ -97,13 +97,13 @@
     <% if @user %>
     <section id="options" class="clearfix">
           <div class="list">
-            <h3>Amigos usando este aplicativo</h3>
+            <h3>Alguns amigos do Facebook</h3>
             <ul class="friends">
-              <% @friends_using_app.each do |friend_result| %>
+              <% @friends.each do |friend| %>
                 <li>
-                  <a href="#" onclick="window.open('http://www.facebook.com/<%= friend_result['uid'] %>')">
-                    <img src="<%= friend_result['pic_square'] %>" alt="<%= friend_result['name'] %>">
-                    <%= friend_result['name'] %>
+                  <a href="#" onclick="window.open('http://www.facebook.com/<%= friend['id']%>')">
+                    <img src="https://graph.facebook.com/<%= friend['id'] %>/picture?type=square" alt="<%= friend['name'] %>">
+                    <%= friend['name'] %>
                   </a>
                 </li>
               <% end %>
