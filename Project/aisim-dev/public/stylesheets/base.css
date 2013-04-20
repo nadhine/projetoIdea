@@ -10,7 +10,7 @@ body {
   font: 14px/1.5em "Lucida Grande", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   width: 720px;
-  margin: 20px;
+  margin: 20px auto;
 }
 
 a:link, a:visited {
@@ -182,52 +182,63 @@ header .tagline {
 }
 /* ------------------------------------------ */
 
-/* =guides/samples spacing
+/* =timeline/options spacing
 --------------------------------------------- */
-#guides h1,
-#samples h1 {
+#timeline {
+  float: right;
+  width: 512px;
+  min-height: 600px;
+}
+
+#options {
+  float: left;
+}
+
+#timeline h1,
+#options h1 {
   margin-bottom: 15px;
   text-align: center;
 }
 
-#guides, #samples {
+#timeline, #options {
   padding: 20px 5px 20px 10px;
 }
 
-#guides ul li,
-#samples .list {
-  float: left;
+#timeline ul li,
+#options .list {
   margin-right: 3px;
+  margin-bottom: 30px;
   width: 172px;
 }
 
-#guides ul li p,
-#samples ul {
+#timeline ul li p,
+#options ul {
   padding: 0 4px;
 }
 /* ------------------------------------------ */
 
-/* =guides
+/* =timeline
 --------------------------------------------- */
-#guides {
+#timeline {
   border-bottom: 1px solid #b3b3b3;
   border-left: 1px solid #b3b3b3;
+  border-top: 1px solid #b3b3b3;
   border-right: 1px solid #b3b3b3;
 }
 
-#guides ul li {
+#timeline ul li {
   font-size: 11px;
   list-style: none;
 }
 
-#guides ul li p {
+#timeline ul li p {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   line-height: 20px;
   text-align: justify;
 }
 
-#guides ul li a.icon {
+#timeline ul li a.icon {
   background: url("../images/sprites.png") no-repeat;
   display: block;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -237,34 +248,33 @@ header .tagline {
   text-align: center;
 }
 
-#guides ul li a.websites {
+#timeline ul li a.websites {
   background-position: 35px -87px;
 }
 
-#guides ul li a.mobile-apps {
+#timeline ul li a.mobile-apps {
   background-position: 35px -231px;
 }
 
-#guides ul li a.apps-on-facebook {
+#timeline ul li a.apps-on-facebook {
   background-position: 35px -375px;
 }
 
-#guides ul li a.heroku {
+#timeline ul li a.heroku {
   background-position: 35px -519px;
 }
 /* ------------------------------------------ */
 
-/* =samples
+/* =options
 --------------------------------------------- */
-#samples {
-  background-image: url("../images/samples-bg.png");
+#options {
+  background-image: url("../images/options-bg.png");
   border-bottom: 1px solid #dadada;
   border-left: 1px solid #b3b3b3;
-  border-right: 1px solid #b3b3b3;
-  border-top: 1px solid #fff;
+  border-top: 1px solid #b3b3b3;
 }
 
-#samples h3 {
+#options h3 {
   background: url("../images/header-sketch.png") no-repeat;
   color: #646464;
   font-weight: bold;
@@ -273,7 +283,7 @@ header .tagline {
   text-align: center;
 }
 
-#samples ul {
+#options ul {
   background: url("../images/picture-sketch.png") 4px 8px;
   background-repeat: repeat-y;
   height: 161px;
@@ -281,7 +291,7 @@ header .tagline {
   padding-top: 8px;
 }
 
-#samples li {
+#options li {
   background-repeat: no-repeat;
   background-position: 0 0;
   color: #7c7c7c;
@@ -294,15 +304,15 @@ header .tagline {
   position: relative;
 }
 
-#samples li a:link,
-#samples li a:visited {
+#options li a:link,
+#options li a:visited {
   color: #7c7c7c;
   display: block;
   line-height: 32px;
   padding-left: 36px;
 }
 
-#samples .list img {
+#options .list img {
   height: auto;
   left: 0;
   position: absolute;
@@ -310,11 +320,11 @@ header .tagline {
   width: 32px;
 }
 
-#samples .inline ul {
+#options .inline ul {
   background-repeat: repeat;
 }
 
-#samples .inline li {
+#options .inline li {
   float: left;
   margin-left: 12px;
   overflow: hidden;
@@ -326,12 +336,12 @@ header .tagline {
   background-size: cover;
 }
 
-#samples .inline li.first-column {
+#options .inline li.first-column {
   margin-left: 0;
 }
 
-#samples .inline li a:link,
-#samples .inline li a:visited {
+#options .inline li a:link,
+#options .inline li a:visited {
   display: block;
   width: 32px;
   height: 32px;
