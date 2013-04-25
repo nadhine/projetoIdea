@@ -33,7 +33,8 @@
           console.log('The response was', response);
         }
       }
-
+	</script>
+	
     <!--[if IE]>
       <script type="text/javascript">
         var tags = ['header', 'section'];
@@ -87,7 +88,7 @@
       <% else %>
         <div>
           <h1>Bem vindo</h1>
-          <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
+          <a class='fb_button' href='/auth/facebook'>Log In</a>
 
         </div>
 
