@@ -1,4 +1,4 @@
-source 'https://rubygems.org/'
+source source :gemcutter 
 
 gem "sinatra"
 gem "koala"

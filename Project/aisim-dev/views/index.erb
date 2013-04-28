@@ -84,12 +84,12 @@
           <p id="picture" style="background-image: url(https://graph.facebook.com/<%= @user['id'] %>/picture?type=normal)"></p>
           <div>
             <h1>Bem vindo, <strong><%= @user['name'] %></strong></h1>
-            <a class='fb_button' href=<"">Sign out</a>
+            <a class='fb-logout-button' data-scope="<%= FACEBOOK_SCOPE %>"href=<"">Sign out</a>
           </div>
       <% else %>
         <div>
           <h1>Bem vindo</h1>
-          <a class='fb_button' href='/auth/facebook'>Log In</a>
+          <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div> 
 
         </div>
 
