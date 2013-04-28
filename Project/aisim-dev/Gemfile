@@ -1,4 +1,4 @@
-source source :gemcutter 
+source :gemcutter 
 
 gem "sinatra"
 gem "koala"
