@@ -6,11 +6,14 @@
 /* =global elements
 --------------------------------------------- */
 body {
-  color: #999;
   font: 14px/1.5em "Lucida Grande", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  width: 720px;
-  margin: 20px auto;
+  width: 720px auto;
+  margin: 2%;
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-bottom: 2%;
+  background-color:  #FFFAFA;
 }
 
 a:link, a:visited {
@@ -35,11 +38,14 @@ h1 {
 /* =header
 --------------------------------------------- */
 header {
-  border-left: 1px solid #b3b3b3;
-  border-right: 1px solid #b3b3b3;
-  border-top: 1px solid #b3b3b3;
+  border-radius: 10px;
+  border-left: 3px solid #b3b3b3;
+  border-right: 3px solid #B22222;
+  border-top: 3px solid #b3b3b3;
+  border-bottom: 3px solid #B22222;
   font-size: 11px;
   padding: 24px 18px;
+  background-color:  #EEE5DE;
 }
 
 header h1 {
@@ -153,7 +159,8 @@ header .tagline {
 #options .list {
   margin-right: 3px;
   margin-bottom: 30px;
-  width: 172px;
+  width: 172px auto;
+  height: 700px auto;
 }
 
 #timeline ul li p,
@@ -166,12 +173,14 @@ header .tagline {
 --------------------------------------------- */
 #timeline {
   float: right;
-  width: 512px;
+  width: 65%;
   min-height: 600px;
-  border-bottom: 1px solid #b3b3b3;
-  border-left: 1px solid #b3b3b3;
-  border-top: 1px solid #b3b3b3;
-  border-right: 1px solid #b3b3b3;
+  border-left: 3px solid #b3b3b3;
+  border-right: 3px solid #B22222;
+  border-top: 3px solid #b3b3b3;
+  border-bottom: 3px solid #B22222;
+  background-color: #EEE9E9;
+  border-radius: 10px;
 }
 
 #timeline ul li {
@@ -218,9 +227,13 @@ header .tagline {
 #options {
   float: left;
   background-image: url("../images/options-bg.png");
-  border-bottom: 1px solid #dadada;
-  border-left: 1px solid #b3b3b3;
-  border-top: 1px solid #b3b3b3;
+  border-left: 3px solid #b3b3b3;
+  border-right: 3px solid #B22222;
+  border-top: 3px solid #b3b3b3;
+  border-bottom: 3px solid #B22222;
+  border-radius: 10px;
+  min-height: 600px;
+  width: 15%;
 }
 
 #options h3 {
@@ -303,6 +316,17 @@ header .tagline {
 
 /* =clearfix
 --------------------------------------------- */
+.clearfix{
+  background-position: right auto;
+  width: auto;
+  height: auto;
+  margin: 40px;
+  margin-left: 40px;
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+}
 .clearfix:after {
   clear: both;
   content: ".";
@@ -315,4 +339,28 @@ header .tagline {
 
 .clearfix {
   zoom: 1;
+}
+/* ------------------------------------------ */
+
+/* =footer
+--------------------------------------------- */
+footer {
+  border-radius: 10px;
+  border-left: 1px solid #b3b3b3;
+  border-right: 1px solid #b3b3b3;
+  border-top: 1px solid #b3b3b3;
+  border-bottom: 1px solid #b3b3b3;
+  font-size: 11px;
+  padding: 24px 18px;
+  background-color: #FFFAFA;
+}
+
+footer h3 {
+  color: #656565;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  
+  margin: 0 0 9px;
+  padding: 2px 0 8px;
 }
