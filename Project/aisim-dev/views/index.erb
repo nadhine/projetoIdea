@@ -84,6 +84,7 @@
           <p id="picture" style="background-image: url(https://graph.facebook.com/<%= @user['id'] %>/picture?type=normal)"></p>
           <div>
             <h1>Bem vindo, <strong><%= @user['name'] %></strong></h1>
+            <a class='fb_button' href=<"">Sign out</a>
           </div>
       <% else %>
         <div>
@@ -114,11 +115,19 @@
     <% end %>
 	<section id="timeline" class="clearfix">
 		  <h1>(timeline)</h1>
+      <form name= "apontamento" action="" method="">
+        <div>Apontamento: <input type="text" name="apontamento">
+          <input type="submit" value="Ai sim!"></div>
+      <select name="apontado"
+        <option><li><a href="#" onclick="window.open('http://www.facebook.com/<%= friend_result['uid'] %>')"><img src="<%= friend_result['pic_square'] %>" alt="<%= friend_result['name'] %>"><%= friend_result['name'] %><a></li></option>
+      </select>
+      </form>
 		  <div class="posts">
+
 		  </div>
 	</section>
   </body>
-  <footer class= "clearfix">
+  <footer>
     <h3>Equipe Idea</h3>
   </footer>
 </html>
