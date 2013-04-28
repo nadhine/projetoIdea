@@ -113,18 +113,24 @@
           </div>
         </section>
     <% end %>
+	
 	<section id="timeline" class="clearfix">
-		  <h1>(timeline)</h1>
-      <form name= "apontamento" action="" method="">
-        <div>Apontamento: <input type="text" name="apontamento">
-          <input type="submit" value="Ai sim!"></div>
-      <select name="apontado"
-        <option><li><a href="#" onclick="window.open('http://www.facebook.com/<%= friend_result['uid'] %>')"><img src="<%= friend_result['pic_square'] %>" alt="<%= friend_result['name'] %>"><%= friend_result['name'] %><a></li></option>
-      </select>
-      </form>
-		  <div class="posts">
+			<h1>(timeline)</h1>
+			<form name= "apontamento" action="" method="">
+				<div>Apontamento: <input type="text" name="apontamento">
+				<input type="submit" value="Ai sim!"></div>
+				<select name="apontado">
+					<% @friends_using_app.each do |friend_result| %>
+						<option>
+							<img src="<%= friend_result['pic_square'] %>" alt="<%= friend_result['name'] %>">
+							<%= friend_result['name'] %>
+						</option>
+					<% end %>
+				</select>
+			</form>
+			<div class="posts">
 
-		  </div>
+			</div>
 	</section>
   </body>
   <footer>
