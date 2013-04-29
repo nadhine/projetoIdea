@@ -84,13 +84,12 @@
           <p id="picture" style="background-image: url(https://graph.facebook.com/<%= @user['id'] %>/picture?type=normal)"></p>
           <div>
             <h1>Bem vindo, <strong><%= @user['name'] %></strong></h1>
-            <a class='fb-logout-button' data-scope="<%= FACEBOOK_SCOPE %>"href=<"">Sign out</a>
+            <a class='fb_button' href='/preview/logged_out'>Sign out</a>
           </div>
       <% else %>
         <div>
           <h1>Bem vindo</h1>
-          <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div> 
-
+          <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
         </div>
 
       <% end %>
@@ -116,24 +115,23 @@
 	
 	<section id="timeline" class="clearfix">
 			<h1>(timeline)</h1>
-			<form name= "apontamento" action="" method="">
+			<form name= "apontamento" action="#" method="">
 				<div>Apontamento: <input type="text" name="apontamento">
 				<input type="submit" value="Ai sim!"></div>
 				<select name="apontado">
-					<% @friends_using_app.each do |friend_result| %>
+					<% @friends.each do |friend| %>
 						<option>
-							<img src="<%= friend_result['pic_square'] %>" alt="<%= friend_result['name'] %>">
-							<%= friend_result['name'] %>
+							<img src="<%= friend['pic_square'] %>" alt="<%= friend['name'] %>">
+							<%= friend['name'] %>
 						</option>
 					<% end %>
 				</select>
 			</form>
 			<div class="posts">
-
 			</div>
 	</section>
   </body>
-  <footer>
+  <footer id="footer" class="clearfix">
     <h3>Equipe Idea</h3>
   </footer>
 </html>

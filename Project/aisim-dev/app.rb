@@ -97,8 +97,7 @@ end
 # Doesn't actually sign out permanently, but good for testing
 get "/preview/logged_out" do
   session[:access_token] = nil
-  request.cookies.keys.each { |key, value| response.set_cookie(key, '') }
-  redirect '/'
+  redirect "/auth/facebook"
 end
 
 

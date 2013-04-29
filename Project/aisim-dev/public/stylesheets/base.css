@@ -46,6 +46,7 @@ header {
   font-size: 11px;
   padding: 24px 18px;
   background-color:  #EEE5DE;
+  min-width: 200px;
 }
 
 header h1 {
@@ -160,7 +161,7 @@ header .tagline {
   margin-right: 3px;
   margin-bottom: 30px;
   width: 172px auto;
-  height: 700px auto;
+  height: 400px auto;
 }
 
 #timeline ul li p,
@@ -174,13 +175,15 @@ header .tagline {
 #timeline {
   float: right;
   width: 65%;
-  min-height: 600px;
+  min-height: 500px;
   border-left: 3px solid #b3b3b3;
   border-right: 3px solid #B22222;
   border-top: 3px solid #b3b3b3;
   border-bottom: 3px solid #B22222;
-  background-color: #EEE9E9;
+  background-color: #EEE5DE;
   border-radius: 10px;
+  background-position: right;
+  min-width: 300px;
 }
 
 #timeline ul li {
@@ -220,20 +223,28 @@ header .tagline {
 #timeline ul li a.heroku {
   background-position: 35px -519px;
 }
+
+#timeline form{
+  width: 50%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+}
 /* ------------------------------------------ */
 
 /* =options
 --------------------------------------------- */
 #options {
   float: left;
-  background-image: url("../images/options-bg.png");
+  background-color: #EEE5DE;
+  background-position: left;
   border-left: 3px solid #b3b3b3;
   border-right: 3px solid #B22222;
   border-top: 3px solid #b3b3b3;
   border-bottom: 3px solid #B22222;
   border-radius: 10px;
-  min-height: 600px;
-  width: 15%;
+  min-height: 500px;
+  width: 25%;
+  min-width: 200px;
 }
 
 #options h3 {
@@ -317,14 +328,10 @@ header .tagline {
 /* =clearfix
 --------------------------------------------- */
 .clearfix{
-  background-position: right auto;
   width: auto;
   height: auto;
-  margin: 40px;
-  margin-left: 40px;
-  margin-left: 40px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 20px;
+
 
 }
 .clearfix:after {
@@ -345,11 +352,14 @@ header .tagline {
 /* =footer
 --------------------------------------------- */
 footer {
-  font-size: 11px;
+  font-size: 13px;
   padding: 24px 18px;
   background-color: #FFFAFA;
-  background-position: bottom, right;
+  background-position: bottom;
   max-height: 30px;
+  width: 80%;
+  min-width: 400px;
+  position: bottom;
 }
 
 footer h3 {
@@ -357,6 +367,7 @@ footer h3 {
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
+  text-align: right;
   
   margin: 0 0 9px;
   padding: 2px 0 8px;
