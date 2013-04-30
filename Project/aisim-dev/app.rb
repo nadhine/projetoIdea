@@ -12,7 +12,7 @@ set :show_exceptions, false
 # permissions your app needs.
 # See https://developers.facebook.com/docs/reference/api/permissions/
 # for a full list of permissions
-FACEBOOK_SCOPE = 'user_likes,user_photos'
+FACEBOOK_SCOPE = ''
 
 unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
   abort("missing env vars: please set FACEBOOK_APP_ID and FACEBOOK_SECRET with your app credentials")
@@ -75,23 +75,8 @@ get "/" do
   if access_token
     @user    = @graph.get_object("me")
     @friends = @graph.get_connections('me', 'friends')
-    @photos  = @graph.get_connections('me', 'photos')
-    @likes   = @graph.get_connections('me', 'likes').first(4)
-
-    # for other data you can always run fql
-    @friends_using_app = @graph.fql_query("SELECT uid, name, is_app_user, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1")
   end
   erb :index
-end
-
-# used by Canvas apps - redirect the POST to be a regular GET
-post "/" do
-  redirect "/"
-end
-
-# used to close the browser window opened to post to wall/send to friends
-get "/close" do
-  "<body onload='window.close();'/>"
 end
 
 # Doesn't actually sign out permanently, but good for testing

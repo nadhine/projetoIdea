@@ -144,19 +144,19 @@ header .tagline {
 }
 /* ------------------------------------------ */
 
-/* =timeline/options spacing
+/* =content/options spacing
 --------------------------------------------- */
-#timeline h1,
+#content h1,
 #options h1 {
   margin-bottom: 15px;
   text-align: center;
 }
 
-#timeline, #options {
+#content, #options {
   padding: 20px 5px 20px 10px;
 }
 
-#timeline ul li,
+#content ul li,
 #options .list {
   margin-right: 3px;
   margin-bottom: 30px;
@@ -164,15 +164,15 @@ header .tagline {
   height: 400px auto;
 }
 
-#timeline ul li p,
+#content ul li p,
 #options ul {
   padding: 0 4px;
 }
 /* ------------------------------------------ */
 
-/* =timeline
+/* =content
 --------------------------------------------- */
-#timeline {
+#content {
   float: right;
   width: 65%;
   min-height: 500px;
@@ -186,19 +186,19 @@ header .tagline {
   min-width: 300px;
 }
 
-#timeline ul li {
+#content ul li {
   font-size: 11px;
   list-style: none;
 }
 
-#timeline ul li p {
+#content ul li p {
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   line-height: 20px;
   text-align: justify;
 }
 
-#timeline ul li a.icon {
+#content ul li a.icon {
   background: url("../images/sprites.png") no-repeat;
   display: block;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -208,23 +208,23 @@ header .tagline {
   text-align: center;
 }
 
-#timeline ul li a.websites {
+#content ul li a.websites {
   background-position: 35px -87px;
 }
 
-#timeline ul li a.mobile-apps {
+#content ul li a.mobile-apps {
   background-position: 35px -231px;
 }
 
-#timeline ul li a.apps-on-facebook {
+#content ul li a.apps-on-facebook {
   background-position: 35px -375px;
 }
 
-#timeline ul li a.heroku {
+#content ul li a.heroku {
   background-position: 35px -519px;
 }
 
-#timeline form{
+#content form{
   width: 50%;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 14px;
