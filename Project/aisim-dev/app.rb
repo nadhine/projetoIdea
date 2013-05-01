@@ -56,6 +56,19 @@ helpers do
   def access_token
     session[:access_token] || access_token_from_cookie
   end
+	
+	def load_user_params
+		# Get base API Connection
+		@graph  = Koala::Facebook::API.new(access_token)
+
+		# Get public details of current application
+		@app  =  @graph.get_object(ENV["FACEBOOK_APP_ID"])
+
+		if access_token
+			@user    = @graph.get_object("me")
+			@friends = @graph.get_connections('me', 'friends')
+		end
+	end
 
 end
 
@@ -66,17 +79,13 @@ error(Koala::Facebook::APIError) do
 end
 
 get "/" do
-  # Get base API Connection
-  @graph  = Koala::Facebook::API.new(access_token)
-
-  # Get public details of current application
-  @app  =  @graph.get_object(ENV["FACEBOOK_APP_ID"])
-
-  if access_token
-    @user    = @graph.get_object("me")
-    @friends = @graph.get_connections('me', 'friends')
-  end
+	load_user_params
   erb :index
+end
+
+get "/appointment" do
+	load_user_params
+	erb	:appointment
 end
 
 # Doesn't actually sign out permanently, but good for testing
