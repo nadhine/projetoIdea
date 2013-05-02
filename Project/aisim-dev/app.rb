@@ -58,16 +58,21 @@ helpers do
     session[:access_token] || access_token_from_cookie
   end
 	
-	def load_user_params
+	def load_params
 		# Get base API Connection
-		@graph  = Koala::Facebook::API.new(access_token)
+		@graph = Koala::Facebook::API.new(access_token)
 
 		# Get public details of current application
-		@app  =  @graph.get_object(ENV["FACEBOOK_APP_ID"])
-
+		@app = @graph.get_object(ENV["FACEBOOK_APP_ID"])
+	end
+	
+	def load_user_params(params = [])
+		load_params
 		if access_token
-			@user    = @graph.get_object("me")
-			@friends = @graph.get_connections('me', 'friends')
+			@user = @graph.get_object("me")
+			params.each do |param|
+				eval("@#{param} = #{@graph.get_connections('me', param)}")
+			end
 		end
 	end
 
@@ -85,8 +90,23 @@ get "/" do
 end
 
 get "/appointment" do
-	load_user_params
+	load_user_params(['friends'])
 	erb	:appointment
+end
+
+post "/make_appointment" do
+	appointment = Appointment.new(
+		:idAppoints => params[:appoints],
+		:idAppointed => params[:appointed],
+		:created_at => Time.now,
+		:created_on => Date.today,
+		:body => params[:body]
+	)
+	if appointment.save
+		redirect '/'
+	else
+		redirect '/appointment'
+	end
 end
 
 # Doesn't actually sign out permanently, but good for testing
