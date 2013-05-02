@@ -79,30 +79,33 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
-
-    <header id='header'>
-       <% if @user %>
-          <p id="picture" style="background-image: url(https://graph.facebook.com/<%= @user['id'] %>/picture?type=normal); float:left; display:block; width:100%; margin:0 auto"></p>
-          <div>
-            <h1><strong><%= @user['name'] %></strong></h1>
-          </div>
-      <% else %>
-        <div>
-          <h1>Bem vindo</h1>
-          <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
-        </div>
-      <% end %>
-      
-    </header>
+	
+	<section id='sidebar'>
+	
+		<div id='user-info'>
+			<% if @user %>
+			<p id="picture" style="background-image: url(https://graph.facebook.com/<%= @user['id'] %>/picture?type=normal); float:left; display:block; width:100%; margin:14% auto"></p>
+			<div>
+				<h1><strong><%= @user['name'] %></strong></h1>
+			</div>
+			<% else %>
+			<div>
+				<h1>Bem vindo</h1>
+				<div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
+			</div>
+			<% end %>
+		</div>
+		<div id='sidebar-buttons'>
+			<div id='appointment' class='btn-sidebar' onclick='window.location="/appointment";'>Apontar alguem</div>
+			<div id='logout' class='btn-sidebar'>Sair</div>
+		</div>
+	</section>
 	
 	<section id='content'>
 		<%= yield %>
 	</section>
 	
-	<section id='sidebar'>
-		<div id='appointment' class='btn-sidebar' onclick='window.location="/appointment";'>Apontar alguem</div>
-		<div id='logout' class='btn-sidebar'>Sair</div>
-	</section>
+	
 
 	</body>
 </html>
