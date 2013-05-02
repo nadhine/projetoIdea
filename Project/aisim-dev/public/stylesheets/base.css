@@ -112,6 +112,26 @@ header a
 	line-height: 14em;
 }
 
+.appointment {
+	margin: 10px auto;
+	width: 650px;
+	min-height: 230px;
+	border: 1px solid #000;
+}
+
+.appointed,
+.appoints,
+.body{
+	float: left;
+}
+
+.body{
+	float: left;
+	min-height: 124px;
+	width: 648px;
+	border: 1px solid #AAA;
+}
+
 #logout{
 	background-image: url("../images/logout.png");
 	background-size: 100%;

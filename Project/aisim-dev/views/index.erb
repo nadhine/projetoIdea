@@ -1,1 +1,23 @@
-<h1>Página inicial!</h1>
+<div class="list">
+	<ul class="appointments">
+			<% @appointments.each do |appointment| %>
+				<li>
+					<div class="appointment">
+						<div class="appointed">
+							<a href="#" onclick="window.open('http://www.facebook.com/<%= appointment['idAppointed']%>')">
+								<img src="https://graph.facebook.com/<%= appointment['idAppointed'] %>/picture?type=square">
+							</a>
+						</div>
+						<div class="body">
+							<p><%= appointment.body %></p>
+						</div>
+						<div class="appoints">
+							<a href="#" onclick="window.open('http://www.facebook.com/<%= appointment['idAppoints']%>')">
+								<img src="https://graph.facebook.com/<%= appointment['idAppoints'] %>/picture?type=square">
+							</a>
+						</div>
+					</div>
+				</li>
+			<% end %>
+	</ul>
+</div>

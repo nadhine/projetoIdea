@@ -86,6 +86,7 @@ end
 
 get "/" do
 	load_user_params
+	@appointments = Appointment.all(:order => [:created_at.desc])
   erb :index
 end
 
