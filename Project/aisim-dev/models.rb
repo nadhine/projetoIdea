@@ -1,4 +1,7 @@
-require 'data_mapper'
+require 'dm-core'
+require 'dm-timestamps'
+require 'dm-validations'
+require 'dm-migrations'
 
 # need install dm-sqlite-adapter
 DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/aisim.db")
@@ -8,12 +11,11 @@ class User
 	include DataMapper::Resource
 	
 	# Table fields
-	#property :id, Serial
-  #property :name, String
-	#...
+	property :id, Integer, :key => true
+  property :name, String, :required => true
 	
-	# Associations
-	#has n,	:appointment
+	has n, :appointments, :child_key => [ :source_id ]
+	has n, :appointeds, self, :through => :appointments, :via => :target
 end
 
 # table Appointment
@@ -21,13 +23,13 @@ class Appointment
 	include DataMapper::Resource
 	
 	# Table fields
-	#property :id, Serial
-  #property :body, Text
-	#...
+  property :date, Date
+	property :time, Time
+	property :body, Text
 	
 	# Associations
-	#has n,	:user
-	#belongs_to	:user
+	belongs_to :appoints, 'User', :key => true
+  belongs_to :appointed, 'User', :key => true
 end
 
 # Perform basic sanity checks and initialize all relationships

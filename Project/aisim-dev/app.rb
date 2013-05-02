@@ -1,5 +1,6 @@
-require "sinatra"
+require 'sinatra'
 require 'koala'
+require './models'
 
 enable :sessions
 set :raise_errors, false
