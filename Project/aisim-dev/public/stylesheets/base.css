@@ -25,6 +25,7 @@ header{
 	font-weight: bold;
 	padding: 0.5% 0%;
 	box-shadow: 0px 2px 1px rgb(185, 140, 140);
+	border-radius: 10px;
 }
 
 header img
@@ -56,6 +57,7 @@ header a
 	text-align: center;
 	color: #666;
 	font-weight: bold;
+	border-radius: 10px;
 }
 
 #picture {
@@ -81,6 +83,7 @@ header a
 	width: 15%;
 	margin-left: 1.7%;
 	text-align: center;
+	border-radius: 10px;
 }
 
 #sidebar-buttons{
@@ -91,12 +94,14 @@ header a
 	border: 1px solid #CCD;
 	background-image: url("../images/options-bg.png");
 	box-shadow: 1px 1px 1px rgb(185, 140, 140);
+	border-radius: 10px;
 }
 
 .btn-sidebar{
 	width: 100%;
 	margin: 0 auto;
 	cursor: pointer;
+	border-radius: 10px;
 }
 
 #appointment{
@@ -110,13 +115,16 @@ header a
 	height: 20px;
 	height: 7.6em;
 	line-height: 14em;
+	border-radius: 10px;
 }
 
 .appointment {
 	margin: 10px auto;
 	width: 650px;
 	min-height: 230px;
-	border: 1px solid #000;
+	border: 2px solid #BEBEBE;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .appointed,
@@ -129,7 +137,6 @@ header a
 	float: left;
 	min-height: 124px;
 	width: 648px;
-	border: 1px solid #AAA;
 }
 
 #logout{
@@ -155,6 +162,7 @@ header a
 	min-height: 300px;
 	text-align: center;
 	margin: 1.7% 2%;
+	border-radius: 10px;
 }
 
 /* ------------------------------------------ */
