@@ -5,6 +5,7 @@
 				<img src="https://graph.facebook.com/<%= appointment['idAppointed'] %>/picture?type=square">
 			</a>
 		</div>
+		<div id='datetime'><%= appointment['created_at'].strftime('em %d/%m/%Y às %H:%M:%S') %></div>
 		<div class="body">
 			<p><%= appointment.body %></p>
 		</div>

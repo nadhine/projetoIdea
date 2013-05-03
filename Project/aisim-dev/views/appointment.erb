@@ -1,7 +1,7 @@
 <div class="clearfix">
 	<form action="/make_appointment" method="POST">
 		<p>Quem estava mandando bem?</p>
-		<select class="friends" name="appointed">
+		<select id="mylist" class="friends" name="appointed">
 			<% @friends.each do |friend| %>
 				<option value="<%= friend['id'] %>">
 					<img src="https://graph.facebook.com/<%= friend['id'] %>/picture?type=square" alt="<%= friend['name'] %>">
@@ -17,3 +17,23 @@
 		<input type="hidden" name="appoints" value="<%= @user['id'] %>">
 	</form>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(
+		function() {
+			var lb = document.getElementById('mylist');
+			arrTexts = new Array();
+
+			for(i=0; i<lb.length; i++)  {
+				arrTexts[i] = lb.options[i].text;
+			}
+
+			arrTexts.sort();
+
+			for(i=0; i<lb.length; i++)  {
+				lb.options[i].text = arrTexts[i];
+				lb.options[i].value = arrTexts[i];
+			}
+		}
+	);
+</script>

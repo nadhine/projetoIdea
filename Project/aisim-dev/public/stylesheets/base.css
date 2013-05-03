@@ -67,6 +67,11 @@ form input{
 	width: 14%;
 	height: 3em;
 	margin: 1% 0px 2% 82%;
+	background-color: rgb(218, 55, 55);
+	border: none;
+	box-shadow: 1px 1px 1px gray;
+	color: white;
+	font-weight: bold;
 }
 
 #description

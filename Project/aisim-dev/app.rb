@@ -87,9 +87,9 @@ error(Koala::Facebook::APIError) do
 end
 
 get "/" do
+	DISPLAY_OFFSET = 0
 	load_user_params
 	@appointments = Appointment.all(:limit => DISPLAY_LIMIT, :order => [:created_at.desc])
-	DISPLAY_OFFSET = 0
   erb :index
 end
 

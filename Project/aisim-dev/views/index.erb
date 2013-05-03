@@ -34,10 +34,11 @@ $(window).scroll(function()
             {
                 $("#container").append(html);
                 $('div#loadmoreajaxloader').hide();
-            }else
-            {
-                $('div#loadmoreajaxloader').html('<center>Não há mais reconhecimentos para mostrar.</center>');
             }
+						else
+						{
+								$('div#loadmoreajaxloader').html('');
+						}
         }
         });
     }
