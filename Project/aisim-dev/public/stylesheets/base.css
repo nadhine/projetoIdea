@@ -1,0 +1,256 @@
+/*
+  title: base css
+*/
+
+
+/* =global elements
+--------------------------------------------- */
+body {
+	border-top: 2px solid gray;
+	font: 14px/1.5em Segoe UI, Trebuchet MS, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	margin: 0 auto;
+	background-color: white;
+	width: 80%;
+}
+
+strong{
+	font-weight: bolder;
+}
+
+header{
+	display: block;
+	float: left;
+	position: relative;
+	width: 100%;
+	height: 3em;
+	background-color: rgb(218, 55, 55);
+	color: whitesmoke;
+	font-weight: bold;
+	padding: 1% 0%;
+	box-shadow: 0px 2px 1px rgb(185, 140, 140);
+}
+
+header a{
+	font-size: 1.6em;
+}
+
+header img
+{
+	height: 3em;
+	margin: 0 1% 0 5%;
+	vertical-align: middle;
+}
+
+form{
+	padding: 4%;
+	text-align: left;
+}
+
+form p
+{
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 2% 0;
+}
+
+form select{
+	height: 2.5em;
+	width: 44%;
+}
+
+form textarea{
+	width: 100%;
+}
+
+form input{
+	width: 14%;
+	height: 3em;
+	margin: 1% 0px 2% 82%;
+}
+
+#description
+{
+	margin-left: 50%;
+	font-weight: normal;
+}
+
+#user-info{
+	background-color: rgb(226, 226, 226);
+	display: block;
+	float: left;
+	padding: 11.5%;
+	width: 70%;
+	margin-bottom: 15%;
+	text-align: center;
+	color: #666;
+	font-weight: bold;
+}
+
+#picture {
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  background-size: 105px;
+  float: left;
+  width: 105px;
+  height: 105px;
+  overflow: hidden;
+}
+
+#user-info h1{
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+#sidebar{
+	display: block;
+	float: left;
+	padding: 1.8% 0.5%;
+	width: 20%;
+	margin-left: 1.7%;
+	text-align: center;
+	border-radius: 10px;
+}
+
+#sidebar-buttons{
+	display: block;
+	float: left;
+	width: 70%;
+	padding: 20% 11.4%;
+	background-color: rgb(230,230,230);
+}
+
+.btn-sidebar{
+	width: 100%;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+#appointment{
+	background-image: url("../images/appointment.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	display: block;
+	color: white;
+	font-weight: bolder;
+	float: left;
+	height: 9.6em;
+	line-height: 17em;
+}
+
+#appointment:hover, #timeline:hover{
+	background-position-y: 91.5%;
+}
+
+#logout:hover {
+	background-position-y: 96%;
+}
+
+.appointment {
+	background-image: url("../images/options-bg.png");
+	box-shadow: 0px 1px 2px rgb(185, 185, 185);
+	margin: 2% 3%;
+	width: 92%;
+	display: block;
+	float: left;
+	padding: 1%
+}
+
+.appointed,
+.appoints
+{
+	margin-top: 5px;
+	text-align: left;
+	display: block;
+	float: left;
+}
+
+.body{
+	border: 1px dashed #ccd;
+	text-align: left;
+	float: left;
+	margin-left: 9%;
+	width: 89%;
+	padding: 0.5%;
+	background-color: rgb(238, 238, 238);
+}
+
+#logout{
+	background-image: url("../images/logout.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	color: white;
+	font-weight: bolder;
+	height: 9.6em;
+	display: block;
+	float: left;
+	margin-top: 25%;
+	line-height: 17em;
+}
+
+#timeline{
+	background-image: url("../images/back.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	color: white;
+	font-weight: bolder;
+	height: 9.6em;
+	display: block;
+	float: left;
+	line-height: 17em;
+}
+
+#content{
+	background-color: rgb(230,230,230);
+	display: block;
+	float: left;
+	width: 71%;
+	text-align: center;
+	margin: 1.8% 2%;
+	padding: 1%;
+}
+
+#counter{
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0;
+}
+
+#datetime{
+	background-color: #da3838;
+	display: block;
+	float: right;
+	padding: 1%;
+	margin-top: -1.2%;
+	margin-right: 1%;
+	color: white;
+	font-weight: bold;
+	box-shadow: 0px 1px 3px #666;
+}
+
+/* ------------------------------------------ */
+
+/* =clearfix
+--------------------------------------------- */
+.clearfix{
+  width: auto;
+  height: auto;
+  margin: 20px;
+
+
+}
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+}
+/* ------------------------------------------ */

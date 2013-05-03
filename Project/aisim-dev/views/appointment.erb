@@ -1,0 +1,19 @@
+<div class="clearfix">
+	<form action="/make_appointment" method="POST">
+		<p>Quem estava mandando bem?</p>
+		<select class="friends" name="appointed">
+			<% @friends.each do |friend| %>
+				<option value="<%= friend['id'] %>">
+					<img src="https://graph.facebook.com/<%= friend['id'] %>/picture?type=square" alt="<%= friend['name'] %>">
+					<%= friend['name'] %>
+				</option>
+			<% end %>
+		</select>
+		<br>
+		<p>Como foi?</p>
+		<textarea onKeyPress="return taLimit(this)" onKeyUp="return taCount(this,'myCounter')" name="body" rows="10" cols="40"></textarea>
+		<p id='counter'><span id="myCounter">300</span> characters</p>
+		<input type="submit" value="Aí sim!" />
+		<input type="hidden" name="appoints" value="<%= @user['id'] %>">
+	</form>
+</div>
