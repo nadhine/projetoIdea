@@ -14,7 +14,7 @@ set :show_exceptions, false
 # See https://developers.facebook.com/docs/reference/api/permissions/
 # for a full list of permissions
 FACEBOOK_SCOPE = ''
-DISPLAY_LIMIT = 3
+DISPLAY_LIMIT = 5
 DISPLAY_OFFSET = 0
 
 unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
