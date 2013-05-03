@@ -121,21 +121,20 @@ header a
 .appointment {
 	margin: 10px auto;
 	width: 650px;
-	min-height: 230px;
 	border: 2px solid #BEBEBE;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
 
 .appointed,
-.appoints,
-.body{
-	float: left;
+.appoints
+{
+	margin-top: 5px;
+	margin-left: -590px;
 }
 
 .body{
 	float: left;
-	min-height: 124px;
 	width: 648px;
 }
 
