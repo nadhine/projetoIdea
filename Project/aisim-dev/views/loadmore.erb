@@ -1,0 +1,17 @@
+<% @appointments.each do |appointment| %>
+	<div class="appointment">
+		<div class="appointed">
+			<a href="#" onclick="window.open('http://www.facebook.com/<%= appointment['idAppointed']%>')">
+				<img src="https://graph.facebook.com/<%= appointment['idAppointed'] %>/picture?type=square">
+			</a>
+		</div>
+		<div class="body">
+			<p><%= appointment.body %></p>
+		</div>
+		<div class="appoints">
+			<a href="#" onclick="window.open('http://www.facebook.com/<%= appointment['idAppoints']%>')">
+				<img src="https://graph.facebook.com/<%= appointment['idAppoints'] %>/picture?type=square">
+			</a>
+		</div>
+	</div>
+<% end %>

@@ -14,6 +14,8 @@ set :show_exceptions, false
 # See https://developers.facebook.com/docs/reference/api/permissions/
 # for a full list of permissions
 FACEBOOK_SCOPE = ''
+DISPLAY_LIMIT = 3
+DISPLAY_OFFSET = 0
 
 unless ENV["FACEBOOK_APP_ID"] && ENV["FACEBOOK_SECRET"]
   abort("missing env vars: please set FACEBOOK_APP_ID and FACEBOOK_SECRET with your app credentials")
@@ -86,8 +88,15 @@ end
 
 get "/" do
 	load_user_params
-	@appointments = Appointment.all(:order => [:created_at.desc])
+	@appointments = Appointment.all(:limit => DISPLAY_LIMIT, :order => [:created_at.desc])
+	DISPLAY_OFFSET = 0
   erb :index
+end
+
+get "/loadmore" do
+	DISPLAY_OFFSET += DISPLAY_LIMIT
+	@appointments = Appointment.all(:limit => DISPLAY_LIMIT, :offset => DISPLAY_OFFSET, :order => [:created_at.desc])
+	erb	:loadmore, :layout => false
 end
 
 get "/appointment" do
